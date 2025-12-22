@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 两个 AI Agent 自由对话程序
-使用本地 Ollama 的 deepseek-r1:32b 模型
+使用本地 Ollama 的 llama3.1:latest 模型
 """
 
 import requests
@@ -94,7 +94,7 @@ def main():
     )
 
     # 获取对话主题
-    print("请输入对话主题（例如：人工智能的未来、旅行的意义、美食文化等）")
+    print("请输入对话主题（例如：先有鸡还是先有蛋、旅行的意义、美食文化等）")
     topic = input("主题: ").strip()
 
     if not topic:
