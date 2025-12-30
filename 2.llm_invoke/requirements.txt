@@ -1,0 +1,12 @@
+openai>=1.0.0
+python-dotenv>=1.0.0
+requests>=2.31.0
+# Ollama 官方 Python 包
+ollama>=0.1.0
+# LangChain 最新稳定版本 (截至 2025-12-30)
+langchain>=1.2.0
+langchain-core>=1.2.0
+langchain-openai>=0.2.0
+langchain-community>=0.3.0
+langchain-ollama>=0.1.0
+
