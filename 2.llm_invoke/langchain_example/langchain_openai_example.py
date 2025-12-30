@@ -1,9 +1,13 @@
+from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 from langchain_core.messages import HumanMessage
 
-# 初始化 OpenAI 模型（需要设置 OPENAI_API_KEY 环境变量）
+# 加载 .env 文件中的环境变量
+load_dotenv()
+
+# 初始化 OpenAI 模型（从环境变量 OPENAI_API_KEY 读取）
 llm = ChatOpenAI(
-    model="gpt-3.5-turbo",
+    model="gpt-4o",
     temperature=0.7
 )
 

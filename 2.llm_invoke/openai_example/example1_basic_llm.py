@@ -7,12 +7,12 @@ from openai import OpenAI
 
 # 初始化客户端
 # 这里可以配置不同的API端点，比如本地模型或兼容OpenAI API的模型服务
+import os
+from dotenv import load_dotenv
+load_dotenv()
 client = OpenAI(
-    # 如果使用OpenAI官方服务，需要设置api_key
-    # api_key="your-api-key-here",
-    
-    # 如果使用本地模型或兼容服务，可以设置base_url
-    # base_url="http://localhost:8000/v1",  # 例如使用本地部署的模型
+    api_key=os.getenv("OPENAI_API_KEY"),
+    base_url=os.getenv("OPENAI_BASE_URL")
 )
 
 def call_llm_basic():
@@ -20,7 +20,7 @@ def call_llm_basic():
     try:
         # 调用Chat Completions API
         response = client.chat.completions.create(
-            model="gpt-3.5-turbo",  # 或者使用其他模型名称
+            model="gpt-4o",  # 或者使用其他模型名称
             messages=[
                 {"role": "system", "content": "你是一个有用的AI助手。"},
                 {"role": "user", "content": "请用一句话介绍Python编程语言。"}
@@ -45,7 +45,7 @@ def call_llm_streaming():
     """流式调用大模型示例（实时返回结果）"""
     try:
         stream = client.chat.completions.create(
-            model="gpt-3.5-turbo",
+            model="gpt-4o",
             messages=[
                 {"role": "user", "content": "请写一首关于春天的短诗。"}
             ],

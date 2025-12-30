@@ -5,20 +5,18 @@
 
 from openai import OpenAI
 import os
-
-# 从环境变量获取API密钥（推荐方式）
-# 设置方式: export OPENAI_API_KEY="your-api-key-here"
-# 或者在代码中直接设置（不推荐，安全性较低）
+from dotenv import load_dotenv
+load_dotenv()
 client = OpenAI(
-    api_key=os.getenv("OPENAI_API_KEY", "your-api-key-here")  # 优先从环境变量读取
+    api_key=os.getenv("OPENAI_API_KEY"),
+    base_url=os.getenv("OPENAI_BASE_URL")
 )
-
 
 def call_openai_gpt():
     """调用OpenAI GPT模型的基础示例"""
     try:
         response = client.chat.completions.create(
-            model="gpt-3.5-turbo",  # 或使用 "gpt-4", "gpt-4-turbo" 等
+            model="gpt-4o",  # 或使用 "gpt-4", "gpt-4-turbo" 等
             messages=[
                 {
                     "role": "system",
@@ -112,7 +110,7 @@ def call_openai_streaming():
     try:
         print("流式输出:")
         stream = client.chat.completions.create(
-            model="gpt-3.5-turbo",
+            model="gpt-4o",
             messages=[
                 {
                     "role": "user",

@@ -58,10 +58,22 @@ try:
     models_response = ollama.list()
     # ollama.list() 返回的对象，使用属性访问
     for model in models_response.models:
-        # 使用属性访问
-        print(f"  - {model.name}")
+        # Model 对象使用 model 属性存储模型名（不是 name）
+        model_name = getattr(model, 'model', None)
+        if model_name:
+            print(f"  - {model_name}")
+        else:
+            # 尝试其他方式
+            try:
+                # 使用 model_dump() 转换为字典
+                if hasattr(model, 'model_dump'):
+                    model_dict = model.model_dump()
+                    model_name = model_dict.get('model') or model_dict.get('name', 'unknown')
+                else:
+                    model_name = str(model)
+                print(f"  - {model_name}")
+            except Exception as e2:
+                print(f"  - {model} (无法获取名称: {e2})")
 except Exception as e:
     print(f"  获取模型列表失败: {e}")
-    import traceback
-    traceback.print_exc()
 
