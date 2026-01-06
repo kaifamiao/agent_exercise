@@ -79,7 +79,7 @@ def call_openai_with_functions():
         ]
         
         response = client.chat.completions.create(
-            model="gpt-3.5-turbo",
+            model="gpt-4o",
             messages=[
                 {
                     "role": "user",
@@ -142,11 +142,11 @@ if __name__ == "__main__":
     
     # 基础调用
     print("\n1. 基础GPT调用:")
-    call_openai_gpt()
+    # call_openai_gpt()
     
     # 流式调用
     print("\n2. 流式调用:")
-    call_openai_streaming()
+    # call_openai_streaming()
     
     # 函数调用示例
     print("\n3. 函数调用示例:")
